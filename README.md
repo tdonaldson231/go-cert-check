@@ -29,4 +29,4 @@ Expiry: Thu, 29 May 2025 07:07:01 UTC
 Certificate is valid for 79 more days.
 ```
 
-Note: repo includes a `launch.config` file to step through `Go` code using Visual Code.
+**Note**: repo includes a `launch.config` file to step through `Go` code using Visual Code.
