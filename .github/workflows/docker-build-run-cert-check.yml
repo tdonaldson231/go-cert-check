@@ -1,0 +1,36 @@
+name: Build and Run SSL Check
+
+on:
+  workflow_dispatch:
+    inputs:
+      server:
+        description: 'Select the server to check SSL for'
+        required: true
+        type: choice
+        options:
+          - ultimateqa.com
+          - example.com
+          - google.com
+          - github.com
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+        # Docker Buildx Action
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Build the Docker image
+      - name: Build Docker Image
+        run: |
+          docker build -t ssl-check .
+
+      # Run the Docker container with the SSL check
+      - name: Run SSL Check
+        run: |
+          docker run --rm ssl-check -server ${{ github.event.inputs.server }}
